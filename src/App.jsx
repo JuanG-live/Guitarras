@@ -19,10 +19,19 @@ function App() {
   }
 
   function removeFromCart(id) {
-    const updateCart = cart.filter((guitar) => guitar.id !== id)
-    setCart(updateCart)
-    console.log(updateCart)
+    const updatedCart = cart.filter((guitar) => guitar.id !== id)
+    setCart(updatedCart)
+  }
 
+  function reduceItemCart(id) {
+    const itemExists = cart.findIndex(guitar => guitar.id === id)
+    if (cart[itemExists].quantity === 1) {
+      removeFromCart(id)
+    } else {
+      const updatedCart = [...cart]
+      cart[itemExists].quantity--
+      setCart(updatedCart)
+    }
   }
 
   return (
@@ -30,7 +39,8 @@ function App() {
     <>
       <Header
         cart={cart}
-        removeFromCart={removeFromCart} />
+        removeFromCart={removeFromCart}
+        reduceItemCart={reduceItemCart} />
       <main className="container-xl mt-5">
         <h2 className="text-center">Nuestra Colección</h2>
 
@@ -40,7 +50,6 @@ function App() {
               key={guitar.id}
               guitar={guitar}
               addToCart={addToCart}
-              removeFromCart={removeFromCart}
             />
           ))}
         </div>

@@ -1,4 +1,4 @@
-export default function Header({ cart, removeFromCart }) {
+export default function Header({ cart, removeFromCart, reduceItemCart }) {
 
     const isEmpty = cart.length === 0;
     const cartTotal = cart.reduce((total, guitar) => {
@@ -36,8 +36,8 @@ export default function Header({ cart, removeFromCart }) {
                                             </thead>
                                             <tbody>
                                                 {cart.map(guitar => (
-                                                    <tr 
-                                                    key={guitar.id}>
+                                                    <tr
+                                                        key={guitar.id}>
                                                         <td>
                                                             <img className="img-fluid" src={`./public/img/${guitar.image}.jpg`}
                                                                 alt="imagen guitarra" />
@@ -47,7 +47,7 @@ export default function Header({ cart, removeFromCart }) {
                                                             {`$${guitar.price}`}
                                                         </td>
                                                         <td className="flex align-items-start gap-4">
-                                                            <button type="button" className="btn btn-dark">
+                                                            <button type="button" className="btn btn-dark" onClick={() => reduceItemCart(guitar.id)}>
                                                                 -
                                                             </button>
                                                             ${guitar.quantity}
@@ -56,7 +56,7 @@ export default function Header({ cart, removeFromCart }) {
                                                             </button>
                                                         </td>
                                                         <td>
-                                                            <button className="btn btn-danger"  type="button" onClick={() => removeFromCart(guitar.id)}>
+                                                            <button className="btn btn-danger" type="button" onClick={() => removeFromCart(guitar.id)}>
                                                                 X
                                                             </button>
                                                         </td>
