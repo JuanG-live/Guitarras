@@ -1,4 +1,3 @@
-
 export default function Header({ cart, removeFromCart }) {
 
     const isEmpty = cart.length === 0;
@@ -6,6 +5,7 @@ export default function Header({ cart, removeFromCart }) {
         const subtotal = guitar.price * guitar.quantity;
         return total + (guitar.price * guitar.quantity);
     }, 0);
+
     return (
         <header className="py-5 header">
             <div className="container-xl">
@@ -36,7 +36,8 @@ export default function Header({ cart, removeFromCart }) {
                                             </thead>
                                             <tbody>
                                                 {cart.map(guitar => (
-                                                    <tr key={guitar.id}>
+                                                    <tr 
+                                                    key={guitar.id}>
                                                         <td>
                                                             <img className="img-fluid" src={`./public/img/${guitar.image}.jpg`}
                                                                 alt="imagen guitarra" />
@@ -55,7 +56,7 @@ export default function Header({ cart, removeFromCart }) {
                                                             </button>
                                                         </td>
                                                         <td>
-                                                            <button className="btn btn-danger" type="button">
+                                                            <button className="btn btn-danger"  type="button" onClick={() => removeFromCart(guitar.id)}>
                                                                 X
                                                             </button>
                                                         </td>
