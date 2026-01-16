@@ -1,13 +1,11 @@
 
-export default function Header({ cart }) {
+export default function Header({ cart, removeFromCart }) {
 
     const isEmpty = cart.length === 0;
     const cartTotal = cart.reduce((total, guitar) => {
         const subtotal = guitar.price * guitar.quantity;
         return total + (guitar.price * guitar.quantity);
     }, 0);
-
-    console.log('TOTAL FINAL:', cartTotal);
     return (
         <header className="py-5 header">
             <div className="container-xl">
