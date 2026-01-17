@@ -1,4 +1,4 @@
-export default function Header({ cart, removeFromCart, reduceItemCart }) {
+export default function Header({ cart, removeFromCart, reduceItemCart, increaseQuantity }) {
 
     const isEmpty = cart.length === 0;
     const cartTotal = cart.reduce((total, guitar) => {
@@ -51,7 +51,7 @@ export default function Header({ cart, removeFromCart, reduceItemCart }) {
                                                                 -
                                                             </button>
                                                             ${guitar.quantity}
-                                                            <button type="button" className="btn btn-dark">
+                                                            <button type="button" className="btn btn-dark" onClick={() => increaseQuantity(guitar.id)}>
                                                                 +
                                                             </button>
                                                         </td>
