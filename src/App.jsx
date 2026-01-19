@@ -1,12 +1,20 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Header from "./components/Header"
 import Guitar from "./components/Guitar"
 import { db } from "./data/db"
 function App() {
+
   const [data, setData] = useState(db)
-  const [cart, setCart] = useState([])
+  const [cart, setCart] = useState(() => {
+    const localStorageSaved = localStorage.getItem('cart')
+    return localStorageSaved ? JSON.parse(localStorageSaved) : []
+  })
 
   const MAX_ITEMS = 5
+
+  useEffect(() => {
+  localStorage.setItem('cart', JSON.stringify(cart))
+}, [cart]) 
 
   function addToCart(item) {
     const itemExists = cart.findIndex(guitar => guitar.id === item.id)
@@ -28,13 +36,13 @@ function App() {
     setCart(updatedCart)
   }
 
-  function reduceItemCart(id) {
+  function decreaseQuantity(id) {
     const itemExists = cart.findIndex(guitar => guitar.id === id)
     if (cart[itemExists].quantity === 1) {
       removeFromCart(id)
     } else {
       const updatedCart = [...cart]
-      cart[itemExists].quantity--
+      updatedCart[itemExists].quantity--
       setCart(updatedCart)
     }
   }
@@ -49,14 +57,18 @@ function App() {
     setCart(updatedCart)
   }
 
+  function clearCart() {
+    setCart([])
+  }
   return (
 
     <>
       <Header
         cart={cart}
         removeFromCart={removeFromCart}
-        reduceItemCart={reduceItemCart}
+        decreaseQuantity={decreaseQuantity}
         increaseQuantity={increaseQuantity}
+        clearCart={clearCart}
         />
       <main className="container-xl mt-5">
         <h2 className="text-center">Nuestra Colección</h2>
