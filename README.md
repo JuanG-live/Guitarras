@@ -26,7 +26,7 @@ Online guitar store developed with React and Vite.
 ## 💻 Installation
 ```bash
 # Clone repository
-git clone [your-repo]
+git clone [https://github.com/JuanG-live/Guitarras]
 
 # Install dependencies
 npm install
@@ -51,7 +51,7 @@ This project was developed as part of my React learning journey, implementing:
 
 **Juan Maria Genova**
 
-[LinkedIn](https://www.linkedin.com/in/juan-genova/) |
+[LinkedIn](https://www.linkedin.com/in/juan-genova/) 
 
 ---
 
