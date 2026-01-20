@@ -38,7 +38,7 @@ export default function Header({ cart, removeFromCart, decreaseQuantity, increas
                                                     <tr
                                                         key={guitar.id}>
                                                         <td>
-                                                            <img className="img-fluid" src={`./public/img/${guitar.image}.jpg`}
+                                                            <img className="img-fluid" src={`/img/${guitar.image}.jpg`}
                                                                 alt="imagen guitarra" />
                                                         </td>
                                                         <td>{guitar.name}</td>
